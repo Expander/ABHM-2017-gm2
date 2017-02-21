@@ -282,6 +282,67 @@
   \fmf{scalar,label=$\tilde{\mu}_k$}{c1,c2}
   \fmfdot{c1,c2}
 \end{fmfgraph*}
+\begin{fmfgraph*}(80,80)
+  \fmfkeep{SUSY2LaBZChi}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmftop{v3}
+  \fmf{plain,tension=4}{v1,b1}
+  \fmf{plain,tension=4}{b2,v2}
+  \fmf{plain}{b1,b2}
+  \fmffreeze
+  \fmf{neutralscalar,label=$h$,label.side=left,tension=2}{b1,c1}
+  \fmf{photon,label=$V$,label.side=left,tension=2}{c2,b2}
+  \fmf{plain}{c1,c2,c3,c1}
+  \fmf{phantom,tension=4,label=$\chi$}{c3,v3}
+  \fmfdot{b1,b2,c1,c2}
+\end{fmfgraph*}
+\begin{fmfgraph*}(80,80)
+  \fmfkeep{SUSY2LaBZsf}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmftop{v3}
+  \fmf{plain,tension=4}{v1,b1}
+  \fmf{plain,tension=4}{b2,v2}
+  \fmf{plain}{b1,b2}
+  \fmffreeze
+  \fmf{neutralscalar,label=$h$,label.side=left,tension=2}{b1,c1}
+  \fmf{photon,label=$V$,label.side=left,tension=2}{c2,b2}
+  \fmf{scalar}{c1,c2,c3,c1}
+  \fmf{phantom,tension=4,label=$\tilde{f}$}{c3,v3}
+  \fmfdot{b1,b2,c1,c2}
+\end{fmfgraph*}
+\begin{fmfgraph*}(80,80)
+  \fmfkeep{SUSY2Laf}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmftop{v3}
+  \fmf{plain,tension=4}{v1,b1}
+  \fmf{plain,tension=4}{b2,v2}
+  \fmf{plain}{b1,b2}
+  \fmffreeze
+  \fmf{neutralscalar,label=$H$,label.side=left,tension=2}{b1,c1}
+  \fmf{photon,label=$V$,label.side=left,tension=2}{c2,b2}
+  \fmf{plain}{c1,c2,c3,c1}
+  \fmf{phantom,tension=4,label=$f$}{c3,v3}
+  \fmfdot{b1,b2,c1,c2}
+\end{fmfgraph*}
+\begin{fmfgraph*}(80,80)
+  \fmfkeep{SUSY2Labos}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmftop{v3}
+  \fmf{plain,tension=2}{v1,b1}
+  \fmf{plain,tension=2}{b3,v2}
+  \fmf{plain}{b1,b2,b3}
+  \fmffreeze
+  \fmf{neutralscalar,label=$H$,label.side=left,tension=2}{b1,c1}
+  \fmf{photon,tension=2}{c1,c2}
+  \fmf{photon,tension=0.2}{c1,b2}
+  \fmf{photon,tension=2,label=$W$,label.side=left}{c2,b3}
+  \fmf{photon,tension=4,label=$\gamma$,label.side=right}{c2,v3}
+  \fmfdot{b1,b2,b3,c1,c2}
+\end{fmfgraph*}
 \end{fmffile}
 }
 
@@ -344,6 +405,38 @@
   \item suppressed by $1/\MS^2$
   \item can explain deviation for e.g.\ $\MS = 500\eh{GeV}$, $\tan\beta = 50$
   \end{itemize}
+\end{frame}
+
+\begin{frame}{SUSY contribution -- 2-loop}
+  \begin{align*}
+    a_\mu^\text{SUSY,2L} = a_\mu^\text{SUSY,2L(a)} + a_\mu^\text{SUSY,2L(b)}
+  \end{align*}
+  \begin{itemize}
+  \item 2-loop correction to SM 1-loop diagram
+  \item 2-loop correction to MSSM 1-loop diagram
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{SUSY contribution -- $a_\mu^\text{SUSY,2L(a)}$}
+  \begin{align*}
+    a_\mu^\text{SUSY,2L(a)} =
+    a_\mu^{\chi,\text{2L}} + a_\mu^{\tilde{f},\text{2L}} +
+    a_\mu^{\text{SUSY},f,\text{2L}} + a_\mu^{\text{SUSY},\text{bos},\text{2L}}
+  \end{align*}
+  \begin{align*}
+    a_\mu^{\chi,\text{2L}} + a_\mu^{\tilde{f},\text{2L}} &=
+    \fmfvcenter{SUSY2LaBZChi} + \fmfvcenter{SUSY2LaBZsf} = O(10\cdot 10^{-10})
+    \\[-3em]
+    a_\mu^{\text{SUSY},f,\text{2L}} &= \fmfvcenter{SUSY2Laf} < 10^{-10}
+    \\[-3em]
+    a_\mu^{\text{SUSY},\text{bos},\text{2L}} &= \fmfvcenter{SUSY2Labos} < 10^{-10}
+  \end{align*}
+\end{frame}
+
+\begin{frame}{GM2Calc -- most precise MSSM calculation}
+  Implemented:
+  Missing:
+  Uncertainty:
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
