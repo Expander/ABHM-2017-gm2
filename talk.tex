@@ -97,6 +97,7 @@
 \newcommand{\pole}{\ensuremath{\text{pole}}}
 \newcommand{\tree}{\ensuremath{\text{tree}}}
 \newcommand{\fsstar}{\textbf{*}}
+\newcommand{\MS}{\ensuremath{M_\text{SUSY}}}
 \newcommand{\Zv}{\ensuremath{\backslash\mkern-11.0mu{Z_3}}}
 \newcommand{\downrightknickarrow}{\mathrel{\scalebox{1.3}{\rotatebox[origin=c]{180}{$\Lsh$}}}}
 \newcommand{\threelinebrace}{$\left. \begin{array}{c} \\ \\ \\ \end{array} \right\rbrace$}
@@ -255,7 +256,32 @@
   \fmf{neutralscalar}{v1,c,v2}
   \fmfdot{c}
 \end{fmfgraph*}
-
+\begin{fmfgraph*}(80,60)
+  \fmfkeep{SUSY1LC}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmflabel{$\mu$}{v1}
+  \fmflabel{$\mu$}{v2}
+  \fmf{fermion}{v1,c1}
+  \fmf{fermion}{c2,v2}
+  \fmf{fermion,left,label=$\chi^\pm_i$}{c1,c2}
+  \fmffreeze
+  \fmf{neutralscalar,label=$\tilde{\nu}_\mu$}{c1,c2}
+  \fmfdot{c1,c2}
+\end{fmfgraph*}
+\begin{fmfgraph*}(80,60)
+  \fmfkeep{SUSY1LN}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmflabel{$\mu$}{v1}
+  \fmflabel{$\mu$}{v2}
+  \fmf{fermion}{v1,c1}
+  \fmf{fermion}{c2,v2}
+  \fmf{plain,left,label=$\chi^0_i$}{c1,c2}
+  \fmffreeze
+  \fmf{scalar,label=$\tilde{\mu}_k$}{c1,c2}
+  \fmfdot{c1,c2}
+\end{fmfgraph*}
 \end{fmffile}
 }
 
@@ -303,6 +329,21 @@
   \end{align*}
   \emph{Potential enhancement factors:}
   $\tan\beta$, $\log\left(\frac{M_\text{BSM}}{m_\mu}\right)$
+\end{frame}
+
+\begin{frame}{SUSY contribution -- 1-loop}
+  \begin{align*}
+    \fmfvcenter{SUSY1LC} \qquad + \qquad \fmfvcenter{SUSY1LN}
+  \end{align*}
+  \begin{align*}
+    a_\mu^{\text{SUSY,1L}} \approx 13\cdot 10^{-10} \left(\frac{100\eh{GeV}}{\MS}\right)^2 \tan\beta\, \sign(\mu M_2)
+  \end{align*}
+  Properties:
+  \begin{itemize}
+  \item enhanced by $\tan\beta$
+  \item suppressed by $1/\MS^2$
+  \item can explain deviation for e.g.\ $\MS = 500\eh{GeV}$, $\tan\beta = 50$
+  \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
