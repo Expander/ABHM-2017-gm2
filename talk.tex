@@ -419,12 +419,12 @@
   $\tan\beta$, $\log\left(\frac{M_\text{BSM}}{m_\mu}\right)$
 \end{frame}
 
-\begin{frame}{SUSY contribution -- 1-loop}
+\begin{frame}{MSSM contribution -- 1-loop}
   \begin{align*}
     \fmfvcenter{SUSY1LC} \qquad + \qquad \fmfvcenter{SUSY1LN}
   \end{align*}
   \begin{align*}
-    a_\mu^{\text{SUSY,1L}} \approx 13\cdot 10^{-10} \left(\frac{100\eh{GeV}}{\MS}\right)^2 \tan\beta\, \sign(\mu M_2)
+    a_\mu^{\MSSM\text{1L}} \approx 13\cdot 10^{-10} \left(\frac{100\eh{GeV}}{\MS}\right)^2 \tan\beta\, \sign(\mu M_2)
   \end{align*}
   Properties:
   \begin{itemize}
@@ -434,9 +434,9 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{SUSY contribution -- 2-loop}
+\begin{frame}{MSSM contribution -- 2-loop}
   \begin{align*}
-    a_\mu^\text{SUSY,2L} = a_\mu^\text{SUSY,2L(a)} + a_\mu^\text{SUSY,2L(b)}
+    a_\mu^{\MSSM\text{2L}} = a_\mu^{\MSSM\text{2L(a)}} + a_\mu^{\MSSM\text{2L(b)}}
   \end{align*}
   \begin{itemize}
   \item 2-loop correction to SM 1-loop diagram
@@ -444,46 +444,62 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{SUSY contribution -- $a_\mu^\text{SUSY,2L(a)}$}
+\begin{frame}{MSSM contribution -- $a_\mu^{\MSSM,\text{2L(a)}}$}
   \begin{align*}
-    a_\mu^\text{SUSY,2L(a)} =
+    a_\mu^{\MSSM,\text{2L(a)}} =
     a_\mu^{\chi,\text{2L}} + a_\mu^{\tilde{f},\text{2L}} +
-    a_\mu^{\text{SUSY},f,\text{2L}} + a_\mu^{\text{SUSY},\text{bos},\text{2L}}
+    a_\mu^{\MSSM,f,\text{2L}} + a_\mu^{\MSSM,\text{bos},\text{2L}}
   \end{align*}
   \begin{align*}
     a_\mu^{\chi,\text{2L}} + a_\mu^{\tilde{f},\text{2L}} &=
     \fmfvcenter{SUSY2LaBZChi} + \fmfvcenter{SUSY2LaBZsf} = O(10\cdot 10^{-10})
     \\[-3em]
-    a_\mu^{\text{SUSY},f,\text{2L}} &= \fmfvcenter{SUSY2Laf} < 10^{-10}
+    a_\mu^{\MSSM,f,\text{2L}} &= \fmfvcenter{SUSY2Laf} < 10^{-10}
     \\[-3em]
-    a_\mu^{\text{SUSY},\text{bos},\text{2L}} &= \fmfvcenter{SUSY2Labos} < 10^{-10}
+    a_\mu^{\MSSM,\text{bos},\text{2L}} &= \fmfvcenter{SUSY2Labos} < 10^{-10}
   \end{align*}
 \end{frame}
 
-\begin{frame}{SUSY contribution -- $a_\mu^\text{SUSY,2L(b)}$}
+\begin{frame}{MSSM contribution -- $a_\mu^{\MSSM\text{2L(b)}}$}
   \begin{align*}
-    a_\mu^\text{SUSY,2L(b)} =
-    a_\mu^{\text{SUSY,2L,photonic}}
-    + a_\mu^{\text{SUSY,2L},f/\tilde{f}}
-    + a_\mu^{\text{SUSY,2L,rest}}
+    a_\mu^{\MSSM,\text{2L(b)}} =
+    a_\mu^{\MSSM,\text{2L,photonic}}
+    + a_\mu^{\MSSM,\text{2L},f/\tilde{f}}
+    + a_\mu^{\MSSM,\text{2L,rest}}
   \end{align*}
   \begin{align*}
-    a_\mu^{\text{SUSY,2L,photonic}} &=
-    \fmfvcenter{SUSY2Lbphotonic} = -(0.07\ldots 0.09) a_\mu^{\text{SUSY,1L}}
+    a_\mu^{\MSSM,\text{2L,photonic}} &=
+    \fmfvcenter{SUSY2Lbphotonic} = -(0.07\ldots 0.09) a_\mu^{{\MSSM,\text{1L}}}
     \\[-2em]
-    a_\mu^{\text{SUSY,2L},f/\tilde{f}} &= \fmfvcenter{SUSY2Lbfsf}
-    \propto \log\frac{\MS}{m_\mu} < 0.1 a_\mu^{\text{SUSY,1L}}
+    a_\mu^{\MSSM,\text{2L},f/\tilde{f}} &= \fmfvcenter{SUSY2Lbfsf}
+    \propto \log\frac{\MS}{m_\mu} < 0.1 a_\mu^{{\MSSM,\text{1L}}}
     \\[-2em]
-    a_\mu^{\text{SUSY,2L,rest}} &= \fmfvcenter{SUSY2Lbrest} = \text{unknown}, O(2\cdot 10^{-10})
+    a_\mu^{\MSSM,\text{2L,rest}} &= \fmfvcenter{SUSY2Lbrest} = \text{unknown}, O(2\cdot 10^{-10})
   \end{align*}
 \end{frame}
 
-\begin{frame}{GM2Calc -- most precise MSSM calculation of $a_\mu^{\text{SUSY}}$}
-  Implemented:
-  Missing:
-  Uncertainty:
+\begin{frame}{GM2Calc -- state of the art MSSM calculation of $a_\mu^{\MSSM}$}
+  Implements:
   \begin{align*}
-    \delta a_\mu^{\MSSM} = 2.3\cdot 10^{-10} + 0.3 \left( |a_\mu^{(\chi\gamma H)}| + |a_\mu^{(\tilde{f}\gamma H)}| \right)
+    a_\mu^\MSSM =
+    \textcolor{darkgreen}{a_\mu^{\MSSM,\text{1L}}}
+    &+ \textcolor{orange}{a_\mu^{\chi,\text{2L}}}
+    + \textcolor{orange}{a_\mu^{\tilde{f},\text{2L}}}
+    + \textcolor{red}{a_\mu^{\MSSM,f,\text{2L}}}
+    + \textcolor{red}{a_\mu^{\MSSM,\text{bos},\text{2L}}} \\
+    &+ \textcolor{darkgreen}{a_\mu^{\MSSM,\text{2L,photonic}}}
+    + \textcolor{orange}{a_\mu^{\MSSM,\text{2L},f/\tilde{f}}}
+    + \textcolor{red}{a_\mu^{\MSSM,\text{2L,rest}}}
+  \end{align*}
+  Remaining uncertainty:
+  \begin{align*}
+    \Delta a_\mu^{\MSSM} &=
+    \Delta\big[\textcolor{orange}{a_\mu^{\chi,\text{2L}}} + \textcolor{orange}{a_\mu^{\tilde{f},\text{2L}}}\big]
+    +\Delta\big[\textcolor{red}{a_\mu^{\MSSM,f,\text{2L}}} + \textcolor{red}{a_\mu^{\MSSM,\text{bos},\text{2L}}}\big]\\
+    &\phantom{=\;} +\Delta\big[\textcolor{red}{a_\mu^{\MSSM,\text{2L,rest}}}\big]\\
+    &= 0.3 \left( |a_\mu^{(\chi\gamma H)}| + |a_\mu^{(\tilde{f}\gamma H)}| \right)
+    + 0.3 \cdot 10^{-10} + 2 \cdot 10^{-10}\\
+    &= 2.3\cdot 10^{-10} + 0.3 \left( |a_\mu^{(\chi\gamma H)}| + |a_\mu^{(\tilde{f}\gamma H)}| \right)
   \end{align*}
 \end{frame}
 
