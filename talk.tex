@@ -90,6 +90,25 @@
 \newcommand{\twolinebrace}{$\left. \begin{array}{c} \\ \\ \end{array} \right\rbrace$}
 \newcommand{\elevenlinebrace}{$\left. \begin{array}{c} \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \end{array} \right\rbrace$}
 
+\newcommand{\amu}{a_\mu}
+\newcommand{\amuexp}{\amu^{\text{exp}}}
+\newcommand{\amuSM}{\amu^{\SM}}
+\newcommand{\amuQED}{\amu^{\text{QED}}}
+\newcommand{\amuweak}{\amu^{\text{weak}}}
+\newcommand{\amuhad}{\amu^{\text{had}}}
+\newcommand{\amuMSSM}{\amu^{\MSSM}}
+\newcommand{\amuMSSMOneL}{\amu^{\MSSM,\text{1L}}}
+\newcommand{\amuMSSMTwoL}{\amu^{\MSSM,\text{2L}}}
+\newcommand{\amuMSSMTwoLa}{\amu^{\MSSM,\text{2L(a)}}}
+\newcommand{\amuMSSMTwoLb}{\amu^{\MSSM,\text{2L(b)}}}
+\newcommand{\amuMSSMTwoLBZC}{\amu^{\chi,\text{2L}}}
+\newcommand{\amuMSSMTwoLBZf}{\amu^{\tilde{f},\text{2L}}}
+\newcommand{\amuMSSMTwoLHf}{\amu^{\MSSM,f,\text{2L}}}
+\newcommand{\amuMSSMTwoLHV}{\amu^{\MSSM,\text{bos},\text{2L}}}
+\newcommand{\amuMSSMTwoLPhotonic}{\amu^{\MSSM,\text{2L,photonic}}}
+\newcommand{\amuMSSMTwoLFSF}{\amu^{\MSSM,\text{2L},f/\tilde{f}}}
+\newcommand{\amuMSSMTwoLrest}{\amu^{\MSSM,\text{2L,rest}}}
+
 % set look of slides
 \usetheme{Madrid}
 \useoutertheme{default}
@@ -143,13 +162,13 @@
   \end{align*}
   g \ldots\ gyromagnetic ratio
   \begin{align*}
-    a_\mu = \frac{g-2}{2}
+    \amu = \frac{g-2}{2}
   \end{align*}
-  $a_\mu$ \ldots\ anomalous magnetic moment
+  $\amu$ \ldots\ anomalous magnetic moment
 \end{frame}
 
 \begin{frame}{Anomalous magnetic moment in QFT}
-  In QFT $a_\mu$ can be extracted from the $\mu$--$\bar\mu$--$A^\rho$
+  In QFT $\amu$ can be extracted from the $\mu$--$\bar\mu$--$A^\rho$
   3-point function
   \begin{align*}
     \bar{u}(p') \Gamma_{\mu\bar{\mu}A^\rho} u(p) = 
@@ -157,7 +176,7 @@
   \end{align*}
   in the limit $q^2 \rightarrow 0$:
   \begin{align*}
-    g &= 2\left[1 - 2m_\mu F_M(0)\right] & &\Rightarrow & a_\mu &= - 2m_\mu F_M(0)
+    g &= 2\left[1 - 2m_\mu F_M(0)\right] & &\Rightarrow & \amu &= - 2m_\mu F_M(0)
   \end{align*}
 \end{frame}
 
@@ -375,11 +394,11 @@
 
 \begin{frame}{SM contribution}
   \begin{align*}
-    a_\mu^\text{SM} &= a_\mu^\text{QED} + a_\mu^\text{weak} + a_\mu^\text{had}\\
-    a_\mu^\text{QED} &= 11658471.895(0.008)\cdot 10^{-10} \\
-    a_\mu^\text{weak} &= 15.4(0.1)\cdot 10^{-10} \\
-    a_\mu^\text{had} &= (692.3(4.2) + 0.7(2.6))\cdot 10^{-10} \\
-    \Rightarrow \quad a_\mu^\text{SM} &= 11659180.3(0.1)(4.2)(2.6)\cdot 10^{-10}\\
+    \amuSM &= \amuQED + \amuweak + \amuhad\\
+    \amuQED &= 11658471.895(0.008)\cdot 10^{-10} \\
+    \amuweak &= 15.4(0.1)\cdot 10^{-10} \\
+    \amuhad &= (692.3(4.2) + 0.7(2.6))\cdot 10^{-10} \\
+    \Rightarrow \quad \amuSM &= 11659180.3(0.1)(4.2)(2.6)\cdot 10^{-10}\\
   \end{align*}
   \begin{align*}
     \fmfvcenter{QED} \fmfvcenter{weakH}
@@ -389,10 +408,10 @@
 
 \begin{frame}{Measurement and SM prediction}
   \begin{align*}
-    a_\mu^\text{exp} &= 11659180.3(0.1)(4.2)(2.6)\cdot 10^{-10}
+    \amuexp &= 11659180.3(0.1)(4.2)(2.6)\cdot 10^{-10}
   \end{align*}
   \begin{align*}
-    a_\mu^\text{exp} - a_\mu^\text{SM} =
+    \amuexp - \amuSM =
     \begin{cases}
       (28.7 \pm 8.0)\cdot 10^{-10} &(3.6\sigma) [1] \\
       (26.1 \pm 8.0)\cdot 10^{-10} &(3.2\sigma) [2]
@@ -424,7 +443,7 @@
     \fmfvcenter{SUSY1LC} \qquad + \qquad \fmfvcenter{SUSY1LN}
   \end{align*}
   \begin{align*}
-    a_\mu^{\MSSM\text{1L}} \approx 13\cdot 10^{-10} \left(\frac{100\eh{GeV}}{\MS}\right)^2 \tan\beta\, \sign(\mu M_2)
+    \amuMSSMOneL \approx 13\cdot 10^{-10} \left(\frac{100\eh{GeV}}{\MS}\right)^2 \tan\beta\, \sign(\mu M_2)
   \end{align*}
   Properties:
   \begin{itemize}
@@ -436,7 +455,7 @@
 
 \begin{frame}{MSSM contribution -- 2-loop}
   \begin{align*}
-    a_\mu^{\MSSM\text{2L}} = a_\mu^{\MSSM\text{2L(a)}} + a_\mu^{\MSSM\text{2L(b)}}
+    \amuMSSMTwoL = \amuMSSMTwoLa + \amuMSSMTwoLb
   \end{align*}
   \begin{itemize}
   \item 2-loop correction to SM 1-loop diagram
@@ -444,59 +463,59 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{MSSM contribution -- $a_\mu^{\MSSM,\text{2L(a)}}$}
+\begin{frame}{MSSM contribution -- $\amuMSSMTwoLa$}
   \begin{align*}
-    a_\mu^{\MSSM,\text{2L(a)}} =
-    a_\mu^{\chi,\text{2L}} + a_\mu^{\tilde{f},\text{2L}} +
-    a_\mu^{\MSSM,f,\text{2L}} + a_\mu^{\MSSM,\text{bos},\text{2L}}
+    \amuMSSMTwoLa =
+    \amuMSSMTwoLBZC + \amuMSSMTwoLBZf +
+    \amuMSSMTwoLHf + \amuMSSMTwoLHV
   \end{align*}
   \begin{align*}
-    a_\mu^{\chi,\text{2L}} + a_\mu^{\tilde{f},\text{2L}} &=
+    \amuMSSMTwoLBZC + \amuMSSMTwoLBZf &=
     \fmfvcenter{SUSY2LaBZChi} + \fmfvcenter{SUSY2LaBZsf} = O(10\cdot 10^{-10})
     \\[-3em]
-    a_\mu^{\MSSM,f,\text{2L}} &= \fmfvcenter{SUSY2Laf} < 10^{-10}
+    \amuMSSMTwoLHf &= \fmfvcenter{SUSY2Laf} < 10^{-10}
     \\[-3em]
-    a_\mu^{\MSSM,\text{bos},\text{2L}} &= \fmfvcenter{SUSY2Labos} < 10^{-10}
+    \amuMSSMTwoLHV &= \fmfvcenter{SUSY2Labos} < 10^{-10}
   \end{align*}
 \end{frame}
 
-\begin{frame}{MSSM contribution -- $a_\mu^{\MSSM\text{2L(b)}}$}
+\begin{frame}{MSSM contribution -- $\amuMSSMTwoLb$}
   \begin{align*}
-    a_\mu^{\MSSM,\text{2L(b)}} =
-    a_\mu^{\MSSM,\text{2L,photonic}}
-    + a_\mu^{\MSSM,\text{2L},f/\tilde{f}}
-    + a_\mu^{\MSSM,\text{2L,rest}}
+    \amuMSSMTwoLb =
+    \amuMSSMTwoLPhotonic
+    + \amuMSSMTwoLFSF
+    + \amuMSSMTwoLrest
   \end{align*}
   \begin{align*}
-    a_\mu^{\MSSM,\text{2L,photonic}} &=
-    \fmfvcenter{SUSY2Lbphotonic} = -(0.07\ldots 0.09) a_\mu^{{\MSSM,\text{1L}}}
+    \amuMSSMTwoLPhotonic &=
+    \fmfvcenter{SUSY2Lbphotonic} = -(0.07\ldots 0.09) \amuMSSMOneL
     \\[-2em]
-    a_\mu^{\MSSM,\text{2L},f/\tilde{f}} &= \fmfvcenter{SUSY2Lbfsf}
-    \propto \log\frac{\MS}{m_\mu} < 0.1 a_\mu^{{\MSSM,\text{1L}}}
+    \amuMSSMTwoLFSF &= \fmfvcenter{SUSY2Lbfsf}
+    \propto \log\frac{\MS}{m_\mu} < 0.1 \amuMSSMOneL
     \\[-2em]
-    a_\mu^{\MSSM,\text{2L,rest}} &= \fmfvcenter{SUSY2Lbrest} = \text{unknown}, O(2\cdot 10^{-10})
+    \amuMSSMTwoLrest &= \fmfvcenter{SUSY2Lbrest} = \text{unknown}, O(2\cdot 10^{-10})
   \end{align*}
 \end{frame}
 
-\begin{frame}{GM2Calc -- state of the art MSSM calculation of $a_\mu^{\MSSM}$}
+\begin{frame}{GM2Calc -- state of the art MSSM calculation of $\amuMSSM$}
   Implements:
   \begin{align*}
-    a_\mu^\MSSM =
-    \textcolor{darkgreen}{a_\mu^{\MSSM,\text{1L}}}
-    &+ \textcolor{orange}{a_\mu^{\chi,\text{2L}}}
-    + \textcolor{orange}{a_\mu^{\tilde{f},\text{2L}}}
-    + \textcolor{red}{a_\mu^{\MSSM,f,\text{2L}}}
-    + \textcolor{red}{a_\mu^{\MSSM,\text{bos},\text{2L}}} \\
-    &+ \textcolor{darkgreen}{a_\mu^{\MSSM,\text{2L,photonic}}}
-    + \textcolor{orange}{a_\mu^{\MSSM,\text{2L},f/\tilde{f}}}
-    + \textcolor{red}{a_\mu^{\MSSM,\text{2L,rest}}}
+    \amuMSSM =
+    \textcolor{darkgreen}{\amuMSSMOneL}
+    &+ \textcolor{orange}{\amuMSSMTwoLBZC}
+    + \textcolor{orange}{\amuMSSMTwoLBZf}
+    + \textcolor{red}{\amuMSSMTwoLHf}
+    + \textcolor{red}{\amuMSSMTwoLHV} \\
+    &+ \textcolor{darkgreen}{\amuMSSMTwoLPhotonic}
+    + \textcolor{orange}{\amuMSSMTwoLFSF}
+    + \textcolor{red}{\amuMSSMTwoLrest}
   \end{align*}
   Remaining uncertainty:
   \begin{align*}
-    \Delta a_\mu^{\MSSM} &=
-    \Delta\big[\textcolor{orange}{a_\mu^{\chi,\text{2L}}} + \textcolor{orange}{a_\mu^{\tilde{f},\text{2L}}}\big]
-    +\Delta\big[\textcolor{red}{a_\mu^{\MSSM,f,\text{2L}}} + \textcolor{red}{a_\mu^{\MSSM,\text{bos},\text{2L}}}\big]\\
-    &\phantom{=\;} +\Delta\big[\textcolor{red}{a_\mu^{\MSSM,\text{2L,rest}}}\big]\\
+    \Delta \amuMSSM &=
+    \Delta\big[\textcolor{orange}{\amuMSSMTwoLBZC} + \textcolor{orange}{\amuMSSMTwoLBZf}\big]
+    +\Delta\big[\textcolor{red}{\amuMSSMTwoLHf} + \textcolor{red}{\amuMSSMTwoLHV}\big]\\
+    &\phantom{=\;} +\Delta\big[\textcolor{red}{\amuMSSMTwoLrest}\big]\\
     &= 0.3 \left( |a_\mu^{(\chi\gamma H)}| + |a_\mu^{(\tilde{f}\gamma H)}| \right)
     + 0.3 \cdot 10^{-10} + 2 \cdot 10^{-10}\\
     &= 2.3\cdot 10^{-10} + 0.3 \left( |a_\mu^{(\chi\gamma H)}| + |a_\mu^{(\tilde{f}\gamma H)}| \right)
