@@ -291,10 +291,11 @@
   \fmf{plain,tension=4}{b2,v2}
   \fmf{plain}{b1,b2}
   \fmffreeze
-  \fmf{neutralscalar,label=$h$,label.side=left,tension=2}{b1,c1}
-  \fmf{photon,label=$V$,label.side=left,tension=2}{c2,b2}
-  \fmf{plain}{c1,c2,c3,c1}
-  \fmf{phantom,tension=4,label=$\chi$}{c3,v3}
+  \fmf{neutralscalar,label=$h$,label.side=left,tension=3}{b1,c1}
+  \fmf{photon,label=$V$,label.side=left,tension=3}{c2,b2}
+  \fmf{plain,left}{c1,c2,c1}
+  \fmf{phantom,tension=2}{c1,v3}
+  \fmf{phantom,tension=2,label=$\chi$,label.side=right}{c2,v3}
   \fmfdot{b1,b2,c1,c2}
 \end{fmfgraph*}
 \begin{fmfgraph*}(80,80)
@@ -306,10 +307,11 @@
   \fmf{plain,tension=4}{b2,v2}
   \fmf{plain}{b1,b2}
   \fmffreeze
-  \fmf{neutralscalar,label=$h$,label.side=left,tension=2}{b1,c1}
-  \fmf{photon,label=$V$,label.side=left,tension=2}{c2,b2}
-  \fmf{scalar}{c1,c2,c3,c1}
-  \fmf{phantom,tension=4,label=$\tilde{f}$}{c3,v3}
+  \fmf{neutralscalar,label=$h$,label.side=left,tension=3}{b1,c1}
+  \fmf{photon,label=$V$,label.side=left,tension=3}{c2,b2}
+  \fmf{scalar,left}{c1,c2,c1}
+  \fmf{phantom,tension=2}{c1,v3}
+  \fmf{phantom,tension=2,label=$\tilde{f}$,label.side=right}{c2,v3}
   \fmfdot{b1,b2,c1,c2}
 \end{fmfgraph*}
 \begin{fmfgraph*}(80,80)
@@ -321,10 +323,11 @@
   \fmf{plain,tension=4}{b2,v2}
   \fmf{plain}{b1,b2}
   \fmffreeze
-  \fmf{neutralscalar,label=$H$,label.side=left,tension=2}{b1,c1}
-  \fmf{photon,label=$V$,label.side=left,tension=2}{c2,b2}
-  \fmf{plain}{c1,c2,c3,c1}
-  \fmf{phantom,tension=4,label=$f$}{c3,v3}
+  \fmf{neutralscalar,label=$H$,label.side=left,tension=3}{b1,c1}
+  \fmf{photon,label=$V$,label.side=left,tension=3}{c2,b2}
+  \fmf{plain,left}{c1,c2,c1}
+  \fmf{phantom,tension=2}{c1,v3}
+  \fmf{phantom,tension=2,label=$f$,label.side=right}{c2,v3}
   \fmfdot{b1,b2,c1,c2}
 \end{fmfgraph*}
 \begin{fmfgraph*}(80,80)
@@ -342,6 +345,45 @@
   \fmf{photon,tension=2,label=$W$,label.side=left}{c2,b3}
   \fmf{photon,tension=4,label=$\gamma$,label.side=right}{c2,v3}
   \fmfdot{b1,b2,b3,c1,c2}
+\end{fmfgraph*}
+\begin{fmfgraph*}(80,60)
+  \fmfkeep{SUSY2Lbphotonic}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmf{fermion}{v1,p1,c1}
+  \fmf{fermion}{c2,p2,v2}
+  \fmf{fermion,left}{c1,c2}
+  \fmffreeze
+  \fmf{neutralscalar}{c1,c2}
+  \fmf{photon,left}{p1,p2}
+  % \fmfdot{c1,c2,p1,p2}
+\end{fmfgraph*}
+\begin{fmfgraph*}(80,60)
+  \fmfkeep{SUSY2Lbfsf}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmftop{v3}
+  \fmf{fermion,tension=2}{v1,c1}
+  \fmf{fermion,tension=2}{c4,v2}
+  \fmf{scalar}{c1,c4}
+  \fmffreeze
+  \fmf{plain}{c1,c2}
+  \fmf{plain}{c3,c4}
+  \fmf{fermion,left,tension=0.01}{c2,c3}
+  \fmf{scalar,right,tension=0.01}{c2,c3}
+  \fmf{phantom}{v3,c2}
+  \fmf{phantom}{v3,c3}
+  % \fmfdot{c1,c2}
+\end{fmfgraph*}
+\begin{fmfgraph*}(80,60)
+  \fmfkeep{SUSY2Lbrest}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmf{fermion}{v1,c1,c2,c3,c4,v2}
+  \fmffreeze
+  \fmf{scalar,left}{c1,c3}
+  \fmf{scalar,left}{c2,c4}
+  % \fmfdot{c1,c2,c3,c4}
 \end{fmfgraph*}
 \end{fmffile}
 }
@@ -430,6 +472,24 @@
     a_\mu^{\text{SUSY},f,\text{2L}} &= \fmfvcenter{SUSY2Laf} < 10^{-10}
     \\[-3em]
     a_\mu^{\text{SUSY},\text{bos},\text{2L}} &= \fmfvcenter{SUSY2Labos} < 10^{-10}
+  \end{align*}
+\end{frame}
+
+\begin{frame}{SUSY contribution -- $a_\mu^\text{SUSY,2L(b)}$}
+  \begin{align*}
+    a_\mu^\text{SUSY,2L(b)} =
+    a_\mu^{\text{SUSY,2L,photonic}}
+    + a_\mu^{\text{SUSY,2L},f/\tilde{f}}
+    + a_\mu^{\text{SUSY,2L,rest}}
+  \end{align*}
+  \begin{align*}
+    a_\mu^{\text{SUSY,2L,photonic}} &=
+    \fmfvcenter{SUSY2Lbphotonic} = -(0.07\ldots 0.09) a_\mu^{\text{SUSY,1L}}
+    \\[-2em]
+    a_\mu^{\text{SUSY,2L},f/\tilde{f}} &= \fmfvcenter{SUSY2Lbfsf}
+    \propto \log\frac{\MS}{m_\mu} < 0.1 a_\mu^{\text{SUSY,1L}}
+    \\[-2em]
+    a_\mu^{\text{SUSY,2L,rest}} &= \fmfvcenter{SUSY2Lbrest} = \text{unknown}, O(2\cdot 10^{-10})
   \end{align*}
 \end{frame}
 
