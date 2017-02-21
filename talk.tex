@@ -237,6 +237,25 @@
   \fmfdot{c,c1,c2}
   \fmfblob{0.5em}{ci}
 \end{fmfgraph*}
+\begin{fmfgraph*}(60,20)
+  \fmfkeep{chiralM}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmflabel{$\mu_L$}{v1}
+  \fmflabel{$\mu_R$}{v2}
+  \fmf{plain}{v1,c,v2}
+  \fmfdot{c}
+\end{fmfgraph*}
+\begin{fmfgraph*}(60,20)
+  \fmfkeep{chiralH}
+  \fmfleft{v1}
+  \fmfright{v2}
+  \fmflabel{$\tilde{\mu}_L$}{v1}
+  \fmflabel{$\tilde{\mu}_R$}{v2}
+  \fmf{neutralscalar}{v1,c,v2}
+  \fmfdot{c}
+\end{fmfgraph*}
+
 \end{fmffile}
 }
 
@@ -266,6 +285,24 @@
     \end{cases}
   \end{align*}
   [1] = arXiv:1010.4180, [2] = arXiv:1105.3149
+\end{frame}
+
+\begin{frame}{BSM contributions}
+  generic expected scaling:
+  \begin{align*}
+    a_\mu^\text{BSM} \propto \frac{m_\mu^2}{M_\text{BSM}^2}
+  \end{align*}
+  \emph{Reason:} $F_M$ corresponds to chirality flip of muon
+  \begin{align*}
+    \bar{\mu}\mu = \mu_R \mu_L + \bar{\mu}_L \bar{\mu}_R
+  \end{align*}
+  Terms in $\mathcal{L}$ corresponding to chirality flip $\propto m_\mu$:
+  \begin{align*}
+    \fmfvcenter{chiralM} &\qquad\propto m_\mu \\
+    \fmfvcenter{chiralH} &\qquad\propto m_\mu \tan\beta
+  \end{align*}
+  \emph{Potential enhancement factors:}
+  $\tan\beta$, $\log\left(\frac{M_\text{BSM}}{m_\mu}\right)$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

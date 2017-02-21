@@ -842,6 +842,7 @@ style_def gluon expr p = draw_curly p enddef;
 style_def heavy expr p = draw_dbl_plain_arrow p enddef;
 style_def ghost expr p = draw_dots_arrow p enddef;
 style_def scalar expr p = draw_dashes_arrow p enddef;
+style_def neutralscalar expr p = draw_dashes p enddef;
 vardef fermion expr path_arg =
   cfill (arrow (path_arg));
   path_arg
