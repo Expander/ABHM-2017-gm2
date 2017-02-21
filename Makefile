@@ -1,19 +1,7 @@
 # http://www.gnu.org/software/make/manual/make.html
 
 OUTFILENAME := talk.pdf
-PLOTS       := \
-		plots/FlexibleEFTHiggs/DMh_tower-1L_MS_TB-5_Xt-0.pdf \
-		plots/FlexibleEFTHiggs/DMh_tower-1L_MS_TB-5_Xt--2.pdf \
-		plots/FlexibleEFTHiggs/DMh_tower-1L_Xt_TB-5_MS-2000.pdf \
-		plots/FlexibleEFTHiggs/DMh_tower-2L_MS_TB-5_Xt-0.pdf \
-		plots/FlexibleEFTHiggs/DMh_tower-2L_MS_TB-5_Xt--2.pdf \
-		plots/FlexibleEFTHiggs/DMh_tower-2L_Xt_TB-5_MS-2000.pdf \
-		plots/FlexibleEFTHiggs/Mh_MS_TB-5_Xt-0.pdf \
-		plots/FlexibleEFTHiggs/Mh_MS_TB-5_Xt--2.pdf \
-		plots/FlexibleEFTHiggs/Mh_relative_MS_TB-5_Xt-0.pdf \
-		plots/FlexibleEFTHiggs/Mh_relative_MS_TB-5_Xt--2.pdf \
-		plots/FlexibleEFTHiggs/Mh_relative_Xt_TB-5_MS-2000.pdf \
-		plots/FlexibleEFTHiggs/Mh_Xt_TB-5_MS-2000.pdf
+PLOTS       := 
 TEXDIRS     := $(PLOTSDIR)
 BIBTEX      := bibtex
 
