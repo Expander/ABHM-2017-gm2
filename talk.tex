@@ -360,7 +360,6 @@
   \fmffreeze
   \fmf{neutralscalar}{c1,c2}
   \fmf{photon,left}{p1,p2}
-  % \fmfdot{c1,c2,p1,p2}
 \end{fmfgraph*}
 \begin{fmfgraph*}(80,60)
   \fmfkeep{SUSY2Lbfsf}
@@ -374,20 +373,22 @@
   \fmf{plain}{c1,c2}
   \fmf{plain}{c3,c4}
   \fmf{fermion,left,tension=0.01}{c2,c3}
-  \fmf{scalar,right,tension=0.01}{c2,c3}
+  \fmf{scalar,left,tension=0.01}{c3,c2}
   \fmf{phantom}{v3,c2}
   \fmf{phantom}{v3,c3}
-  % \fmfdot{c1,c2}
 \end{fmfgraph*}
 \begin{fmfgraph*}(80,60)
   \fmfkeep{SUSY2Lbrest}
   \fmfleft{v1}
   \fmfright{v2}
-  \fmf{fermion}{v1,c1,c2,c3,c4,v2}
+  \fmf{fermion}{v1,c1}
+  \fmf{plain}{c1,c2}
+  \fmf{fermion}{c2,c3}
+  \fmf{plain}{c3,c4}
+  \fmf{fermion}{c4,v2}
   \fmffreeze
   \fmf{scalar,left}{c1,c3}
-  \fmf{scalar,left}{c2,c4}
-  % \fmfdot{c1,c2,c3,c4}
+  \fmf{scalar,right}{c4,c2}
 \end{fmfgraph*}
 \end{fmffile}
 }
