@@ -513,7 +513,6 @@
 \section{Implementation into GM2Calc}
 
 \begin{frame}{GM2Calc -- state of the art MSSM calculation of $\amuMSSM$}
-  Implements:
   \begin{align*}
     \amuMSSM =
     \Bigg[
@@ -527,6 +526,28 @@
     + \textcolor{red}{\amuMSSMTwoLrest}
     \Bigg]_{\tan\beta\text{--res.}}
   \end{align*}
+  %
+  \begin{align*}
+    &[\amu]_{\tan\beta\text{--res.}} = [\amu]_{y_f \rightarrow \tilde{y}_f}, \qquad
+    \tilde{y}_f = \frac{y_f}{1 + \Delta_f} \qquad
+    (f = \mu, \tau, b) \\
+    &\Delta_f = \tan\beta\text{-enhanced contributions to $f$ self energy}
+  \end{align*}
+  %
+  \textcolor{darkgreen}{fully implemented}\\
+  \textcolor{orange}{approximations implemented}\\
+  \textcolor{red}{not implemented}
+\end{frame}
+
+\begin{frame}{GM2Calc -- state of the art MSSM calculation of $\amuMSSM$}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/tb_resummation}
+  \end{figure}
+  BM1 [arXiv:0808.1530]
+\end{frame}
+
+\begin{frame}{GM2Calc -- state of the art MSSM calculation of $\amuMSSM$}
   Remaining uncertainty:
   \begin{align*}
     \Delta \amuMSSM &=
@@ -535,7 +556,8 @@
     +\Delta\big[\textcolor{red}{\amuMSSMTwoLrest}\big]\\
     &= 0.3 \left( |a_\mu^{(\chi\gamma H)}| + |a_\mu^{(\tilde{f}\gamma H)}| \right)
     + 0.3 \cdot 10^{-10} + 2 \cdot 10^{-10}\\
-    &= 2.3\cdot 10^{-10} + 0.3 \left( |a_\mu^{(\chi\gamma H)}| + |a_\mu^{(\tilde{f}\gamma H)}| \right)
+    &= 0.3 \left( |a_\mu^{(\chi\gamma H)}| + |a_\mu^{(\tilde{f}\gamma H)}| \right)
+    + 2.3\cdot 10^{-10}
   \end{align*}
 \end{frame}
 
@@ -547,33 +569,6 @@
   \begin{center}
     \Huge Backup
   \end{center}
-\end{frame}
-
-\begin{frame}[noframenumbering]{$\tan\beta$ resummation}
-  \begin{align*}
-    [\amu]_{\tan\beta\text{--res.}} = [\amu]_{y_\mu \rightarrow \tilde{y}_\mu}
-  \end{align*}
-  \begin{align*}
-    \tilde{y}_f &= \frac{m_f e}{\sqrt{2} s_W M_W \cos\beta (1 + \Delta_f)} \\
-    \Delta_f &= \tan\beta\text{-enhanced contributions to $f$ self energy} \\
-    f &= \mu, \tau, b
-  \end{align*}
-\end{frame}
-
-\begin{frame}[noframenumbering]{$\tan\beta$ resummation}
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.9\textwidth]{plots/tb_resummation}
-  \end{figure}
-  BM1 [arXiv:0808.1530]
-\end{frame}
-
-\begin{frame}[noframenumbering]{$\tan\beta$ resummation}
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{plots/tb-infinity}
-  \end{figure}
-  BM1 [arXiv:0808.1530]
 \end{frame}
 
 \end{document}
