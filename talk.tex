@@ -548,7 +548,7 @@
 \end{frame}
 
 \begin{frame}{GM2Calc -- state of the art MSSM calculation of $\amuMSSM$}
-  Remaining uncertainty:
+  Remaining uncertainty (conservative):
   \begin{align*}
     \Delta \amuMSSM &=
     \Delta\big[\textcolor{orange}{\amuMSSMTwoLBZC} + \textcolor{orange}{\amuMSSMTwoLBZf}\big]
@@ -570,9 +570,30 @@
 \end{frame}
 
 \begin{frame}{Comparison GM2Calc and SPheno/FlexibleSUSY}
-  GM2Calc: OS scheme (1L + 2L)\\
-  SARAH/SPheno: \DRbar scheme (1L) \\
-  FlexibleSUSY: \DRbar scheme (1L + 2L QED LL)
+  \begin{itemize}
+  \item GM2Calc: OS scheme (1L + 2L)
+  \item SARAH/SPheno: \DRbar scheme (1L)
+  \item FlexibleSUSY: \DRbar scheme (1L + 2L QED LL)
+  \end{itemize}
+  %
+  \vspace{1em}
+  \emph{1-loop} calculations suffer from:
+  \begin{itemize}
+  \item uncertainty from choice of renormalization scheme for
+    important parameters ($\alpha_{\text{em}}$, $m_{\tilde{\mu}_i}$,
+    \ldots), because 1L = LO\\
+    $\rightarrow$ resolved at 2-loop level
+  \end{itemize}
+  %
+  \vspace{1em}
+  \emph{\DRbar} calculations suffer from:
+  \begin{itemize}
+  \item full renormalization scale uncertainty, because 1L = LO\\
+    $\rightarrow$ resolved at 2-loop level
+  \item potentially large 2-loop corrections from quadratically
+    enhanced smuon self-energy contributions\\
+    $\rightarrow$ avoided in the OS scheme
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Comparison GM2Calc and SPheno/FlexibleSUSY}
@@ -580,6 +601,7 @@
     \centering
     \includegraphics[width=0.8\textwidth]{plots/OS-vs-DR}
   \end{figure}
+  Note: scale variation = \emph{lower bound} of uncertainty
 \end{frame}
 
 \begin{frame}{Status of the MSSM}
