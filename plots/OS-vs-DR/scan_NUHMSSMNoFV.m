@@ -13,7 +13,7 @@ LogRange[start_, stop_, steps_] :=
            result
           ];
 
-RunNUHMSSMNoFV[TB_, MS_] :=
+RunNUHMSSMNoFV[TB_, MS_, MR_] :=
     Module[{handle, spectrum, obs},
            handle = FSNUHMSSMNoFVOpenHandle[
                fsSettings -> {
@@ -93,9 +93,9 @@ RunNUHMSSMNoFV[TB_, MS_] :=
                    ml11IN -> MS,
                    ml22IN -> MS,
                    ml33IN -> MS,
-                   me11IN -> 200,
-                   me22IN -> 200,
-                   me33IN -> 200,
+                   me11IN -> MR,
+                   me22IN -> MR,
+                   me33IN -> MR,
                    mq11IN -> MS,
                    mq22IN -> MS,
                    mq33IN -> MS,
@@ -146,6 +146,10 @@ RunNUHMSSMNoFVAMU[args__] :=
              ]
           ];
 
-data = {N[#], Sequence @@ RunNUHMSSMNoFVAMU[50, #]}& /@ LogRange[800,2000,60]
+data = {N[#], Sequence @@ RunNUHMSSMNoFVAMU[50, #, 200]}& /@ LogRange[800,2000,60]
+
+Export["scan_MS_OS-vs-DR_splitting.dat", data];
+
+data = {N[#], Sequence @@ RunNUHMSSMNoFVAMU[50, #, #]}& /@ LogRange[800,2000,60]
 
 Export["scan_MS_OS-vs-DR.dat", data];
