@@ -1,16 +1,13 @@
 # http://www.gnu.org/software/make/manual/make.html
 
 OUTFILENAME := talk.pdf
-PLOTS       := 
+PLOTS       := $(wildcard plots/*.pdf)
 TEXDIRS     := $(PLOTSDIR)
 BIBTEX      := bibtex
 
 .PHONY: all clean
 
 all: $(OUTFILENAME)
-
-$(PLOTS): plots/FlexibleEFTHiggs/*.dat plots/FlexibleEFTHiggs/MSSMtower-1L-nologs/*.dat plots/FlexibleEFTHiggs/*.sh plots/FlexibleEFTHiggs/*.gnuplot
-	cd plots/FlexibleEFTHiggs && ./plot.sh
 
 %.pdf: %.tex $(PLOTS)
 	pdflatex $<
