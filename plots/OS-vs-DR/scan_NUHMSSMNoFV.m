@@ -110,10 +110,11 @@ RunNUHMSSMNoFV[TB_, MS_, MR_] :=
            ];
            spectrum = FSNUHMSSMNoFVCalculateSpectrum[handle];
            observables = FSNUHMSSMNoFVCalculateObservables[handle];
+           (* Print[spectrum]; *)
            FSNUHMSSMNoFVCloseHandle[handle];
            If[spectrum === $Failed || observables === $Failed,
               $Failed,
-              Join[spectrum, observables]
+              Join[spectrum, observables, {FHgm2 -> CalcFHgm2[spectrum]}]
              ]
           ];
 
@@ -137,14 +138,65 @@ RunNUHMSSMNoFVMh[args__] :=
 RunNUHMSSMNoFVAMU[args__] :=
     Module[{spec = RunNUHMSSMNoFV[args]},
            If[spec === $Failed,
-              Array[invalid&, 4],
+              Array[invalid&, 5],
               {
                   GetPar[spec, FlexibleSUSYObservable`aMuon],
                   GetPar[spec, FlexibleSUSYObservable`aMuonUncertainty],
                   GetPar[spec, FlexibleSUSYObservable`aMuonGM2Calc],
-                  GetPar[spec, FlexibleSUSYObservable`aMuonGM2CalcUncertainty]
+                  GetPar[spec, FlexibleSUSYObservable`aMuonGM2CalcUncertainty],
+                  GetPar[spec, FHgm2]
               }
              ]
+          ];
+
+CalcFHgm2[spec_] :=
+    Module[{},
+           FHSetFlags[4,0,0,2,0,2,3,1,1,0];
+           FHSetSMPara[137.035999074, 127.916, 0.1184, 1.16637*^-5,
+                       0.000510998902, 0.0024, 0.00475, 0.1056583715, 1.27, 0.104, 1.777, 4.18,
+                       80.385, 91.1876, 0, 0,
+                       0, 0, 0, 0];
+           FHSetPara[1,
+                     173.34,
+                     GetPar[NUHMSSMNoFV /. spec, vu] / GetPar[NUHMSSMNoFV /. spec, vd],
+                     GetPar[NUHMSSMNoFV /. spec, M[Ah][2]],
+                     0 MHp,
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, ml2[3,3]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, me2[3,3]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, mq2[3,3]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, mu2[3,3]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, md2[3,3]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, ml2[2,2]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, me2[2,2]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, mq2[2,2]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, mu2[2,2]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, md2[2,2]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, ml2[1,1]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, me2[1,1]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, mq2[1,1]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, mu2[1,1]],
+                     Sqrt @ GetPar[NUHMSSMNoFV /. spec, md2[1,1]],
+                     GetPar[NUHMSSMNoFV /. spec, \[Mu]],
+                     GetPar[NUHMSSMNoFV /. spec, T[Ye][3,3]] / GetPar[NUHMSSMNoFV /. spec, Ye[3,3]],
+                     GetPar[NUHMSSMNoFV /. spec, T[Yu][3,3]] / GetPar[NUHMSSMNoFV /. spec, Yu[3,3]],
+                     GetPar[NUHMSSMNoFV /. spec, T[Yd][3,3]] / GetPar[NUHMSSMNoFV /. spec, Yd[3,3]],
+                     GetPar[NUHMSSMNoFV /. spec, T[Ye][2,2]] / GetPar[NUHMSSMNoFV /. spec, Ye[2,2]],
+                     GetPar[NUHMSSMNoFV /. spec, T[Yu][2,2]] / GetPar[NUHMSSMNoFV /. spec, Yu[2,2]],
+                     GetPar[NUHMSSMNoFV /. spec, T[Yd][2,2]] / GetPar[NUHMSSMNoFV /. spec, Yd[2,2]],
+                     GetPar[NUHMSSMNoFV /. spec, T[Ye][1,1]] / GetPar[NUHMSSMNoFV /. spec, Ye[1,1]],
+                     GetPar[NUHMSSMNoFV /. spec, T[Yu][1,1]] / GetPar[NUHMSSMNoFV /. spec, Yu[1,1]],
+                     GetPar[NUHMSSMNoFV /. spec, T[Yd][1,1]] / GetPar[NUHMSSMNoFV /. spec, Yd[1,1]],
+                     GetPar[NUHMSSMNoFV /. spec, MassB],
+                     GetPar[NUHMSSMNoFV /. spec, MassWB],
+                     GetPar[NUHMSSMNoFV /. spec, MassG],
+                     GetPar[NUHMSSMNoFV /. spec, SCALE],
+                     GetPar[NUHMSSMNoFV /. spec, SCALE],
+                     GetPar[NUHMSSMNoFV /. spec, SCALE]];
+           (* Print @ FHRetrieveSMPara[]; *)
+           (* Print @ FHRetrievePara[]; *)
+           (* Print @ FHGetSMPara[]; *)
+           (* Print @ FHGetPara[]; *)
+           gm2 /. FHConstraints[]
           ];
 
 RunFH[TB_, MS_, MR_] :=
@@ -177,3 +229,7 @@ Export["scan_MS_OS-vs-DR_splitting.dat", data];
 data = {N[#], Sequence @@ RunNUHMSSMNoFVAMU[50, #, #], RunFH[50, #, #]}& /@ LogRange[800,2000,60]
 
 Export["scan_MS_OS-vs-DR.dat", data];
+
+(* Off[General::stop]; *)
+
+(* Print[10^10 {Sequence @@ RunNUHMSSMNoFVAMU[50, 2000, 2000], RunFH[50, 2000, 2000]}]; *)
