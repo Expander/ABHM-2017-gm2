@@ -537,34 +537,31 @@
   \tableofcontents[currentsection]
 \end{frame}
 
-\begin{frame}{GM2Calc -- state of the art MSSM calculation of $\amuMSSM$}
-  \begin{align*}
-    \amuMSSM =
-    \Bigg[
-    \textcolor{darkgreen}{\amuMSSMOneL}
-    &+ \textcolor{orange}{\amuMSSMTwoLBZC}
-    + \textcolor{orange}{\amuMSSMTwoLBZf}
-    + \textcolor{red}{\amuMSSMTwoLHf}
-    + \textcolor{red}{\amuMSSMTwoLHV} \\
-    &+ \textcolor{darkgreen}{\amuMSSMTwoLPhotonic}
-    + \textcolor{orange}{\amuMSSMTwoLFSF}
-    + \textcolor{red}{\amuMSSMTwoLrest}
-    \Bigg]_{\tan\beta\text{--res.}}
-  \end{align*}
-  %
-  \begin{align*}
-    &[\amu]_{\tan\beta\text{--res.}} = [\amu]_{y_f \rightarrow \tilde{y}_f}, \qquad
-    \tilde{y}_f = \frac{y_f}{1 + \Delta_f} \qquad
-    (f = \mu, \tau, b) \\
-    &\Delta_f = \tan\beta\text{-enhanced contributions to $f$ self energy}
-  \end{align*}
-  %
-  \textcolor{darkgreen}{fully implemented}\\
-  \textcolor{orange}{approximations implemented}\\
-  \textcolor{red}{not implemented}
+\begin{frame}{Comparision of public codes}
+  \begin{tabular}{llllll}
+    \toprule
+    Program      & $\amuMSSMOneL$ & $\amuMSSMTwoLBZC$ & $\amuMSSMTwoLBZf$ & $\amuMSSMTwoLHf$ & $\amuMSSMTwoLHV$ \\
+    \midrule
+    GM2Calc      & \ok            & \maybe & \maybe & \notok & \notok \\
+    FeynHiggs    & \ok            & \ok    & \ok    & \ok    & \ok    \\
+    FlexibleSUSY & \ok            & \notok & \notok & \notok & \notok \\
+    SARAH/SPheno & \ok            & \notok & \notok & \notok & \notok \\
+    \midrule
+    Program      & $\amuMSSMTwoLPhotonic$ & $\amuMSSMTwoLFSF$ & $\amuMSSMTwoLrest$ & $t_\beta$--res. & scheme \\
+    \midrule
+    GM2Calc      & \ok    & \maybe & \notok & \ok    & OS-\DRbar \\
+    FeynHiggs    & \ok    & \notok & \notok & \notok & OS-\DRbar \\
+    FlexibleSUSY & \maybe & \notok & \notok & \notok & \DRbar    \\
+    SARAH/SPheno & \notok & \notok & \notok & \notok & \DRbar    \\
+    \bottomrule
+  \end{tabular}\\
+  \vspace*{0.5em}
+  \ok\ = \textcolor{darkgreen}{full},
+  \maybe\ = \textcolor{gray}{approximated},
+  \notok\ = \textcolor{red}{missing}
 \end{frame}
 
-\begin{frame}{GM2Calc -- state of the art MSSM calculation of $\amuMSSM$}
+\begin{frame}{Impact of $t_\beta$ resummation}
   \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{plots/tb_resummation}
@@ -572,8 +569,8 @@
   BM1 [arXiv:0808.1530]
 \end{frame}
 
-\begin{frame}{GM2Calc -- state of the art MSSM calculation of $\amuMSSM$}
-  Remaining uncertainty (conservative):
+\begin{frame}{Remaining theory uncertainty}
+  GM2Calc (conservative):
   \begin{align*}
     \Delta \amuMSSM &=
     \Delta\big[\textcolor{orange}{\amuMSSMTwoLBZC} + \textcolor{orange}{\amuMSSMTwoLBZf}\big]
@@ -586,7 +583,7 @@
   \end{align*}
 \end{frame}
 
-\begin{frame}{GM2Calc -- state of the art MSSM calculation of $\amuMSSM$}
+\begin{frame}{Remaining theory uncertainty}
   \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{plots/tb_resummation_uncertainty}
@@ -594,15 +591,7 @@
   BM1 [arXiv:0808.1530]
 \end{frame}
 
-\begin{frame}{Comparison of public codes}
-  \begin{itemize}
-  \item GM2Calc: mixed OS/\DRbar scheme (1L + 2L)
-  \item FeynHiggs: mixed OS/\DRbar scheme (1L + 2L)
-  \item SARAH/SPheno: \DRbar scheme (1L)
-  \item FlexibleSUSY: \DRbar scheme (1L + 2L QED LL)
-  \end{itemize}
-  %
-  \vspace{1em}
+\begin{frame}{Sources of uncertainties in public codes}
   \emph{1-loop} calculations suffer from:
   \begin{itemize}
   \item uncertainty from choice of renormalization scheme for
@@ -631,10 +620,10 @@
   Note: scale variation = \emph{lower bound} of uncertainty
 \end{frame}
 
-\begin{frame}{Status of the MSSM}
-  CMSSM: excluded at $\approx 90\%$ CL \mycite{1508.00711} \\
-  general MSSM: still viable \mycite{1504.05500} \\
-\end{frame}
+% \begin{frame}{Status of the MSSM}
+%   CMSSM: excluded at $\approx 90\%$ CL \mycite{1508.00711} \\
+%   general MSSM: still viable \mycite{1504.05500} \\
+% \end{frame}
 
 \begin{frame}{Summary and conclusions}
   \begin{itemize}
@@ -663,24 +652,13 @@
   \end{center}
 \end{frame}
 
-\begin{frame}[noframenumbering]{FeynHiggs 2.13.0beta}
+\begin{frame}[noframenumbering]{$\tan\beta$ resummation}
   \begin{align*}
-    \amuMSSM =
-    \Bigg[
-    \textcolor{darkgreen}{\amuMSSMOneL}
-    &+ \textcolor{darkgreen}{\amuMSSMTwoLBZC}
-    + \textcolor{darkgreen}{\amuMSSMTwoLBZf}
-    + \textcolor{darkgreen}{\amuMSSMTwoLHf}
-    + \textcolor{darkgreen}{\amuMSSMTwoLHV} \\
-    &+ \textcolor{darkgreen}{\amuMSSMTwoLPhotonic}
-    + \textcolor{red}{\amuMSSMTwoLFSF}
-    + \textcolor{red}{\amuMSSMTwoLrest}
-    \Bigg]_{\textcolor{red}{\tan\beta\text{--res.}}}
+    &[\amu]_{\tan\beta\text{--res.}} = [\amu]_{y_f \rightarrow \tilde{y}_f}, \\
+    &\tilde{y}_f = \frac{y_f}{1 + \Delta_f}
+    (f = \mu, \tau, b) \\
+    &\Delta_f = \tan\beta\text{-enhanced contributions to $f$ self energy}
   \end{align*}
-  %
-  \textcolor{darkgreen}{fully implemented}\\
-  \textcolor{red}{not implemented}\\
-  \mycite{hep-ph/0312264,hep-ph/0405255}
 \end{frame}
 
 \begin{frame}[noframenumbering]{Contributions to $a_\mu$}
