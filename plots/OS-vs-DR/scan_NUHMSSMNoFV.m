@@ -1,4 +1,5 @@
 Get["models/NUHMSSMNoFV/NUHMSSMNoFV_librarylink.m"];
+Install["/home/avoigt/packages/FeynHiggs-2.13.0/build/MFeynHiggs"];
 
 invalid;
 
@@ -146,10 +147,33 @@ RunNUHMSSMNoFVAMU[args__] :=
              ]
           ];
 
-data = {N[#], Sequence @@ RunNUHMSSMNoFVAMU[50, #, 200]}& /@ LogRange[800,2000,60]
+RunFH[TB_, MS_, MR_] :=
+    Module[{},
+           FHSetFlags[4,0,0,2,0,2,3,1,1,0];
+           FHSetSMPara[137.035999074, 127.916, 0.1184, 1.16637*^-5,
+                       0.000510998902, 0.0024, 0.00475, 0.1056583715, 1.27, 0.104, 1.777, 4.18,
+                       80.385, 91.1876, 0, 0,
+                       0, 0, 0, 0];
+           FHSetPara[1,
+                     173.34, TB, MS, 0 MHp,
+                     MS, MR, MS, MS, MS,
+                     MS, MR, MS, MS, MS,
+                     MS, MR, MS, MS, MS,
+                     -160,
+                     0 Atau, 0 At, 0 Ab, 0 Amu, 0 Ac, 0 As, 0 Ae, 0 Au, 0 Ad,
+                     140, MS, 300,
+                     454.7, 454.7, 454.7];
+           (* Print @ FHRetrieveSMPara[]; *)
+           (* Print @ FHRetrievePara[]; *)
+           (* Print @ FHGetSMPara[]; *)
+           (* Print @ FHGetPara[]; *)
+           gm2 /. FHConstraints[]
+          ];
+
+data = {N[#], Sequence @@ RunNUHMSSMNoFVAMU[50, #, 200], RunFH[50, #, 200]}& /@ LogRange[800,2000,60]
 
 Export["scan_MS_OS-vs-DR_splitting.dat", data];
 
-data = {N[#], Sequence @@ RunNUHMSSMNoFVAMU[50, #, #]}& /@ LogRange[800,2000,60]
+data = {N[#], Sequence @@ RunNUHMSSMNoFVAMU[50, #, #], RunFH[50, #, #]}& /@ LogRange[800,2000,60]
 
 Export["scan_MS_OS-vs-DR.dat", data];
