@@ -1,4 +1,5 @@
 Install["bin/gm2calc.mx"];
+Install["/home/avoigt/packages/FeynHiggs-2.13.0/build/MFeynHiggs"];
 
 LinearRange[start_, stop_, steps_] :=
     Table[start + i/steps (stop - start), {i, 0, steps}];
@@ -73,6 +74,30 @@ CalcTB[TanB_, resum_] :=
                Q      -> 866.360379]
           ];
 
+RunFH[TB_] :=
+    Module[{res},
+           FHSetFlags[4,0,0,2,0,2,3,1,1,0];
+           FHSetSMPara[137.035999074, 127.916, 0.1184, 1.16637*^-5,
+                       0.000510998902, 0.0024, 0.00475, 0.1056583715, 1.27, 0.104, 1.777, 4.18,
+                       80.385, 91.1876, 0, 0,
+                       0, 0, 0, 0];
+           FHSetPara[1,
+                     173.34, TB, 1500, 0 MHp,
+                     1000, 1000, 3000, 3000, 3000,
+                     1000, 1000, 3000, 3000, 3000,
+                     1000, 1000, 3000, 3000, 3000,
+                     30000,
+                     0 Atau, 0 At, 0 Ab, 0 Amu, 0 Ac, 0 As, 0 Ae, 0 Au, 0 Ad,
+                     1000, -30000, 2000,
+                     866.360379, 866.360379, 866.360379];
+           (* Print @ FHRetrieveSMPara[]; *)
+           (* Print @ FHRetrievePara[]; *)
+           (* Print @ FHGetSMPara[]; *)
+           (* Print @ FHGetPara[]; *)
+           res = FHConstraints[];
+           If[res === Indeterminate || Head[res] === FHError, Indeterminate, gm2 /. res]
+          ];
+
 Nsteps = 100;
 
 (* data = {#, Sequence @@ Calc[#, 20, 0]}& /@ LogRange[173.34, 10^4, Nsteps]; *)
@@ -81,5 +106,5 @@ Nsteps = 100;
 (* data = {#, Sequence @@ Calc[#, 20, Sqrt[6]]}& /@ LogRange[173.34, 10^4, Nsteps]; *)
 (* Export["MS_TB-20_Xt-sqrt6.dat", data]; *)
 
-data = {N[#], Sequence @@ CalcTB[#,False], Sequence @@ CalcTB[#,True]}& /@ LogRange[1, 10^3, Nsteps];
+data = {N[#], Sequence @@ CalcTB[#,False], Sequence @@ CalcTB[#,True], RunFH[#]}& /@ LogRange[1, 10^3, Nsteps];
 Export["TB.dat", data];
