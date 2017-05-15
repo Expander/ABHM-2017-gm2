@@ -1,3 +1,4 @@
+Install["/home/avoigt/research/GM2Calc/bin/gm2calc.mx"];
 Get["models/NUHMSSMNoFV/NUHMSSMNoFV_librarylink.m"];
 Install["/home/avoigt/packages/FeynHiggs-2.13.0/build/MFeynHiggs"];
 
@@ -114,7 +115,7 @@ RunNUHMSSMNoFV[TB_, MS_, MR_] :=
            FSNUHMSSMNoFVCloseHandle[handle];
            If[spectrum === $Failed || observables === $Failed,
               $Failed,
-              Join[spectrum, observables, {FHgm2 -> CalcFHgm2[spectrum]}]
+              Join[spectrum, observables, {FHgm2 -> CalcFHgm2[spectrum], FHgm2OS -> CalcFHgm2OS[spectrum]}]
              ]
           ];
 
@@ -138,13 +139,14 @@ RunNUHMSSMNoFVMh[args__] :=
 RunNUHMSSMNoFVAMU[args__] :=
     Module[{spec = RunNUHMSSMNoFV[args]},
            If[spec === $Failed,
-              Array[invalid&, 5],
+              Array[invalid&, 6],
               {
                   GetPar[spec, FlexibleSUSYObservable`aMuon],
                   GetPar[spec, FlexibleSUSYObservable`aMuonUncertainty],
                   GetPar[spec, FlexibleSUSYObservable`aMuonGM2Calc],
                   GetPar[spec, FlexibleSUSYObservable`aMuonGM2CalcUncertainty],
-                  GetPar[spec, FHgm2]
+                  GetPar[spec, FHgm2],
+                  GetPar[spec, FHgm2OS]
               }
              ]
           ];
@@ -199,6 +201,109 @@ CalcFHgm2[spec_] :=
            gm2 /. FHConstraints[]
           ];
 
+ConvertToOS[spec_] :=
+    Module[{},
+           GM2CalcSetFlags[
+               loopOrder -> 2,
+               tanBetaResummation -> True,
+               forceOutput -> False];
+           GM2CalcSetSMParameters[
+               alphaMZ -> 1/127.916,      (* 1L *)
+               alpha0 -> 1/137.035999074, (* 2L *)
+               alphaS -> 0.1184,       (* 2L *)
+               MW -> 80.385,           (* 1L *)
+               MZ -> 91.1876,          (* 1L *)
+               MT -> 173.34,           (* 2L *)
+               mbmb -> 4.18,           (* 2L *)
+               ML -> 1.777,            (* 2L *)
+               MM -> 0.1056583715];    (* 1L *)
+           GM2CalcAmuSLHAScheme[
+               MSvmL  -> GetPar[NUHMSSMNoFV /. spec, Pole @ M[SvmL]], (* 1L *)
+               MSm    -> GetPar[NUHMSSMNoFV /. spec, Pole @ M[Sm]],   (* 1L *)
+               MChi   -> GetPar[NUHMSSMNoFV /. spec, Pole @ M[Chi]],  (* 1L *)
+               MCha   -> GetPar[NUHMSSMNoFV /. spec, Pole @ M[Cha]],  (* 1L *)
+               MAh    -> GetPar[NUHMSSMNoFV /. spec, Pole[M[Ah]][2]],(* 2L *)
+               TB     -> GetPar[NUHMSSMNoFV /. spec, vu] / GetPar[NUHMSSMNoFV /. spec, vd], (* 1L *)
+               Mu     -> GetPar[NUHMSSMNoFV /. spec, \[Mu]], (* initial guess *)
+               MassB  -> GetPar[NUHMSSMNoFV /. spec, MassB], (* initial guess *)
+               MassWB -> GetPar[NUHMSSMNoFV /. spec, MassWB],(* initial guess *)
+               MassG  -> GetPar[NUHMSSMNoFV /. spec, MassG], (* 2L *)
+               mq2    -> GetPar[NUHMSSMNoFV /. spec, mq2],   (* 2L *)
+               ml2    -> GetPar[NUHMSSMNoFV /. spec, ml2],   (* 2L *)
+               mu2    -> GetPar[NUHMSSMNoFV /. spec, mu2],   (* 2L *)
+               md2    -> GetPar[NUHMSSMNoFV /. spec, md2],   (* 2L *)
+               me2    -> GetPar[NUHMSSMNoFV /. spec, me2],   (* 2L *)
+               Au     -> {
+                   { GetPar[NUHMSSMNoFV /. spec, T[Yu][1,1]] / GetPar[NUHMSSMNoFV /. spec, Yu[1,1]], 0, 0 },
+                   { 0, GetPar[NUHMSSMNoFV /. spec, T[Yu][2,2]] / GetPar[NUHMSSMNoFV /. spec, Yu[2,2]], 0 },
+                   { 0, 0, GetPar[NUHMSSMNoFV /. spec, T[Yu][3,3]] / GetPar[NUHMSSMNoFV /. spec, Yu[3,3]] }
+                         },
+               Ad     -> {
+                   { GetPar[NUHMSSMNoFV /. spec, T[Yd][1,1]] / GetPar[NUHMSSMNoFV /. spec, Yd[1,1]], 0, 0 },
+                   { 0, GetPar[NUHMSSMNoFV /. spec, T[Yd][2,2]] / GetPar[NUHMSSMNoFV /. spec, Yd[2,2]], 0 },
+                   { 0, 0, GetPar[NUHMSSMNoFV /. spec, T[Yd][3,3]] / GetPar[NUHMSSMNoFV /. spec, Yd[3,3]] }
+                         },
+               Ae     -> {
+                   { GetPar[NUHMSSMNoFV /. spec, T[Ye][1,1]] / GetPar[NUHMSSMNoFV /. spec, Ye[1,1]], 0, 0 },
+                   { 0, GetPar[NUHMSSMNoFV /. spec, T[Ye][2,2]] / GetPar[NUHMSSMNoFV /. spec, Ye[2,2]], 0 },
+                   { 0, 0, GetPar[NUHMSSMNoFV /. spec, T[Ye][3,3]] / GetPar[NUHMSSMNoFV /. spec, Ye[3,3]] }
+                         },
+               Q      -> GetPar[NUHMSSMNoFV /. spec, SCALE]] (* 2L *)
+          ];
+
+CalcFHgm2OS[spec_] :=
+    Module[{osSpec = ConvertToOS[spec]},
+           FHSetFlags[4,0,0,2,0,2,3,1,1,0];
+           FHSetSMPara[137.035999074, 127.916, 0.1184, 1.16637*^-5,
+                       0.000510998902, 0.0024, 0.00475, 0.1056583715, 1.27, 0.104, 1.777, 4.18,
+                       80.385, 91.1876, 0, 0,
+                       0, 0, 0, 0];
+           FHSetPara[1,
+                     173.34,
+                     GetPar[NUHMSSMNoFV /. spec, vu] / GetPar[NUHMSSMNoFV /. spec, vd],
+                     GetPar[NUHMSSMNoFV /. spec, Pole[M[Ah]][2]],
+                     0 MHp,
+                     Sqrt @ GetPar[osSpec, ml2[3,3]],
+                     Sqrt @ GetPar[osSpec, me2[3,3]],
+                     Sqrt @ GetPar[osSpec, mq2[3,3]],
+                     Sqrt @ GetPar[osSpec, mu2[3,3]],
+                     Sqrt @ GetPar[osSpec, md2[3,3]],
+                     Sqrt @ GetPar[osSpec, ml2[2,2]],
+                     Sqrt @ GetPar[osSpec, me2[2,2]],
+                     Sqrt @ GetPar[osSpec, mq2[2,2]],
+                     Sqrt @ GetPar[osSpec, mu2[2,2]],
+                     Sqrt @ GetPar[osSpec, md2[2,2]],
+                     Sqrt @ GetPar[osSpec, ml2[1,1]],
+                     Sqrt @ GetPar[osSpec, me2[1,1]],
+                     Sqrt @ GetPar[osSpec, mq2[1,1]],
+                     Sqrt @ GetPar[osSpec, mu2[1,1]],
+                     Sqrt @ GetPar[osSpec, md2[1,1]],
+                     GetPar[osSpec, Mu],
+                     GetPar[osSpec, Ae[3,3]],
+                     GetPar[osSpec, Au[3,3]],
+                     GetPar[osSpec, Ad[3,3]],
+                     GetPar[osSpec, Ae[2,2]],
+                     GetPar[osSpec, Au[2,2]],
+                     GetPar[osSpec, Ad[2,2]],
+                     GetPar[osSpec, Ae[1,1]],
+                     GetPar[osSpec, Au[1,1]],
+                     GetPar[osSpec, Ad[1,1]],
+                     GetPar[osSpec, MassB],
+                     GetPar[osSpec, MassWB],
+                     GetPar[osSpec, MassG],
+                     GetPar[osSpec, Q],
+                     GetPar[osSpec, Q],
+                     GetPar[osSpec, Q]];
+           (* Print @ FHRetrieveSMPara[]; *)
+           (* Print @ FHRetrievePara[]; *)
+           (* Print @ FHGetSMPara[]; *)
+           (* Print @ FHGetPara[]; *)
+           (* Print @ spec; *)
+           (* Print @ osSpec; *)
+           (* amu /. osSpec *)
+           gm2 /. FHConstraints[]
+          ];
+
 RunFH[TB_, MS_, MR_] :=
     Module[{},
            FHSetFlags[4,0,0,2,0,2,3,1,1,0];
@@ -232,4 +337,4 @@ Export["scan_MS_OS-vs-DR.dat", data];
 
 (* Off[General::stop]; *)
 
-(* Print[10^10 {Sequence @@ RunNUHMSSMNoFVAMU[50, 2000, 2000], RunFH[50, 2000, 2000]}]; *)
+(* Print[10^10 {Sequence @@ RunNUHMSSMNoFVAMU[50, 2000, 200], RunFH[50, 2000, 200]}]; *)
